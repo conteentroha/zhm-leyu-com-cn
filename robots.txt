@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://conteentroha.github.io/zhm-leyu-com-cn/sitemap.xml
