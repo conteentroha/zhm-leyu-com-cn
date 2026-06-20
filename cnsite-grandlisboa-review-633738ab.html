@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澳门新葡京 · 再次遇见</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #fafaf8;
+            color: #2c2c2c;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 深色头图区域 — 轻量导航风格 */
+        .hero-dark {
+            background: linear-gradient(145deg, #0f141a 0%, #1a232b 100%);
+            color: #ececec;
+            padding: 60px 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-dark::after {
+            content: '';
+            position: absolute;
+            top: -40%; right: -20%;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(200,160,80,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-nav .logo-mark {
+            font-size: 1.25rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+            color: #d6c8a0;
+            border-left: 3px solid #c4a86a;
+            padding-left: 14px;
+        }
+        .hero-nav .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 0.9rem;
+        }
+        .hero-nav .nav-links a {
+            color: #b0b8c2;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: 0.2s;
+        }
+        .hero-nav .nav-links a:hover {
+            color: #e4d9b4;
+            border-bottom-color: #c4a86a;
+        }
+
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #b6bfca;
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-sub a {
+            color: #e4d9b4;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(196,168,106,0.4);
+        }
+        .hero-sub a:hover {
+            color: #f5eac2;
+        }
+
+        /* 浅色正文区 */
+        .main-content {
+            padding: 48px 0 32px;
+            background: #fafaf8;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8a7e66;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #1f262e;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2ddd0;
+            padding-bottom: 8px;
+        }
+        .intro-text {
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            color: #3e4042;
+            max-width: 800px;
+        }
+        .intro-text a {
+            color: #9a7f4a;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(154,127,74,0.3);
+        }
+        .intro-text a:hover {
+            color: #7d653a;
+        }
+
+        /* 三个场景模块：卡片网格 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin: 32px 0 44px;
+        }
+        .scene-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 28px 22px 24px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03), 0 1px 4px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+            border: 1px solid #efebe2;
+        }
+        .scene-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            border-color: #d6cfbc;
+        }
+        .scene-card .card-icon {
+            font-size: 1.7rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .scene-card h3 {
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: #2a2f38;
+            margin-bottom: 8px;
+        }
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #5a5d62;
+            line-height: 1.6;
+        }
+
+        /* 常见说明 / 提示区域 */
+        .faq-note {
+            background: #f3f1eb;
+            border-radius: 18px;
+            padding: 30px 32px;
+            margin: 40px 0 32px;
+        }
+        .faq-note h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #353b44;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+        .faq-note p {
+            font-size: 0.95rem;
+            color: #4b4e55;
+            max-width: 780px;
+        }
+        .faq-note a {
+            color: #9a7f4a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .small-remark {
+            font-size: 0.85rem;
+            color: #7a7c7e;
+            border-top: 1px solid #e5dfd2;
+            padding-top: 20px;
+            margin-top: 8px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .hero-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .faq-note {
+                padding: 22px 18px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-dark {
+                padding: 40px 0 36px;
+            }
+            .hero-nav .nav-links {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 深色头图 + 轻量导航 -->
+<div class="hero-dark">
+    <div class="container">
+        <div class="hero-nav">
+            <span class="logo-mark">✦ 新葡京</span>
+            <div class="nav-links">
+                <a href="#">首页</a>
+                <a href="#">场景</a>
+                <a href="#">指南</a>
+                <a href="#">收藏</a>
+            </div>
+        </div>
+        <h1 class="hero-title">再次遇见 · 澳门新葡京</h1>
+        <p class="hero-sub">
+            有些地方，总值得你一次次回头。<br>
+            收藏也好，偶尔翻看也罢，<a href="https://cnsite--grandlisboa.com">澳门新葡京</a>始终在那里。
+        </p>
+    </div>
+</div>
+
+<!-- 正文浅色区 -->
+<div class="main-content">
+    <div class="container">
+
+        <!-- 核心介绍：从持续关注的角度 -->
+        <div class="section-tag">—— 常看常新 ——</div>
+        <div class="section-title">不只是标志，更是记忆坐标</div>
+        <div class="intro-text">
+            对于许多人来说，<a href="https://cnsite--grandlisboa.com">澳门新葡京</a>早已超越建筑物的范畴。它像一本翻不厌的笔记，每次打开都有熟悉的段落，也总会有尚未读过的注释。 
+            无论是刚接触的新朋友，还是隔段时间就想回来看看的老面孔，这里始终保持着一种从容的节奏——不喧哗，但处处可见用心。
+        </div>
+
+        <!-- 三个场景模块 -->
+        <div class="section-tag">—— 三个日常切面 ——</div>
+        <div class="scene-grid">
+            <div class="scene-card">
+                <span class="card-icon">📌</span>
+                <h3>收藏夹里的坐标</h3>
+                <p>把页面加入书签，就像在澳门的地图上别上一枚回形针。下次想再感受那种氛围时，不必重新搜索，轻轻一点就到了。</p>
+            </div>
+            <div class="scene-card">
+                <span class="card-icon">🔄</span>
+                <h3>定期回访的节奏</h3>
+                <p>隔几周或隔几个月回来看看，总能察觉到细微变化——也许是一段新内容，也许是更舒服的浏览节奏。就像见一位老朋友，不必刻意，但每次都有话聊。</p>
+            </div>
+            <div class="scene-card">
+                <span class="card-icon">✉️</span>
+                <h3>分享给同频的人</h3>
+                <p>遇到同样对澳门感兴趣的朋友，顺手推荐一句「你可以看看<a href="https://cnsite--grandlisboa.com" style="color:#9a7f4a; text-decoration:underline; text-underline-offset:2px;">澳门新葡京</a>」。不用多解释，对方自然明白那种质感。</p>
+            </div>
+        </div>
+
+        <!-- 常见说明/提示 -->
+        <div class="faq-note">
+            <h4>📖 一些值得知道的细节</h4>
+            <p>内容与风格保持统一，不会频繁变动，也不必担心信息过时。如果你希望更便捷地访问，将 <a href="https://cnsite--grandlisboa.com">澳门新葡京</a> 添加到浏览器收藏夹或设备主屏幕，之后就能随时打开。页面本身也很轻量，加载流畅，不占用太多精力。</p>
+        </div>
+
+        <!-- 一句轻松总结 -->
+        <div class="small-remark">
+            —— 未必每次都需要理由，有时只是单纯想回来看看。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
