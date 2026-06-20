@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>壹号娱乐 · 轻量导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f9fafb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        a {
+            color: #0b6e4f;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.15s ease;
+        }
+        a:hover {
+            color: #084c36;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* 导航 */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .nav-logo {
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: 0.02em;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .nav-logo span {
+            background: #0b6e4f;
+            color: #ffffff;
+            padding: 0.1rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: #0b6e4f;
+        }
+
+        /* 深色头图 hero */
+        .hero {
+            background: #0b1a26;
+            background-image: radial-gradient(ellipse at 40% 50%, #1e3a5f 0%, #0b1a26 80%);
+            color: #eef2f6;
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 720px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+            font-weight: 350;
+        }
+        .hero-tagline {
+            display: inline-block;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.4rem 1.2rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: #a0b9cc;
+            margin-bottom: 1.5rem;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* 核心介绍 */
+        .intro {
+            background: #ffffff;
+            padding: 3.5rem 0;
+            border-bottom: 1px solid #e9edf2;
+        }
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .intro-text h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        .intro-text p {
+            margin-bottom: 1.2rem;
+            color: #334155;
+            font-size: 1rem;
+        }
+        .intro-text .highlight-link {
+            font-weight: 500;
+        }
+        .intro-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2rem;
+            margin-top: 1.5rem;
+        }
+        .stat-item {
+            flex: 1 0 120px;
+        }
+        .stat-item .num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0b6e4f;
+            line-height: 1;
+        }
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 0.2rem;
+        }
+
+        /* 三个场景模块 */
+        .scenes {
+            background: #f1f5f9;
+            padding: 4rem 0;
+        }
+        .scenes h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        .scenes-sub {
+            text-align: center;
+            color: #475569;
+            margin-bottom: 3rem;
+        }
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .scene-card {
+            background: #ffffff;
+            border-radius: 1.2rem;
+            padding: 2rem 1.5rem 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            border: 1px solid #e9edf2;
+            display: flex;
+            flex-direction: column;
+        }
+        .scene-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        .scene-icon {
+            font-size: 2rem;
+            margin-bottom: 0.7rem;
+        }
+        .scene-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #0f172a;
+        }
+        .scene-card p {
+            color: #475569;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        .scene-tag {
+            margin-top: 1.2rem;
+            font-size: 0.8rem;
+            color: #0b6e4f;
+            font-weight: 500;
+        }
+
+        /* 常见说明 (FAQ 摘要) */
+        .faq {
+            background: #ffffff;
+            padding: 3.5rem 0;
+        }
+        .faq h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #0f172a;
+        }
+        .faq-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem 3rem;
+        }
+        .faq-item {
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 1.2rem;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+        .faq-item p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #a8d5c2;
+            text-decoration: underline;
+        }
+        .footer a:hover {
+            color: #e2f0e8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .faq-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                padding: 1rem 1.2rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero {
+                padding: 3rem 1.2rem 3.5rem;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .intro-stats {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="nav">
+    <div class="nav-logo">
+        <span>✦</span> 壹号娱乐 <span>v2</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#intro">概述</a></li>
+        <li><a href="#scenes">场景</a></li>
+        <li><a href="#faq">说明</a></li>
+        <li><a href="https://cn-home-1hao.com" style="font-weight:600;">壹号娱乐</a></li>
+    </ul>
+</nav>
+
+<!-- hero 深色头图 -->
+<section class="hero">
+    <div class="hero-tagline">✦ 信息聚合 · 轻量导航</div>
+    <h1>围绕「壹号娱乐」的主题内容展开</h1>
+    <p>一个融合资讯、社区与实用工具的数字化触点，提供简洁有序的浏览路径，帮助用户快速定位感兴趣的内容模块。</p>
+    <div style="margin-top:1.8rem;">
+        <a href="https://cn-home-1hao.com" style="color:#e2f0e8; background:#0b6e4f; padding:0.6rem 1.8rem; border-radius:999px; text-decoration:none; font-weight:500; display:inline-block;">壹号娱乐</a>
+    </div>
+</section>
+
+<!-- 核心介绍 -->
+<section class="intro" id="intro">
+    <div class="container intro-grid">
+        <div class="intro-text">
+            <h2>主题内容与定位</h2>
+            <p>从关键词背后的内容主题切入，<a href="https://cn-home-1hao.com" class="highlight-link">壹号娱乐</a> 并非单一入口，而是一组经过梳理的信息单元。它面向希望快速了解板块构成、场景分类与常见问题的用户，通过模块化呈现降低浏览成本。</p>
+            <p>整个页面围绕三个功能场景与常态化说明展开，兼顾内容的深度与可访问性。无论是新手还是高频使用者，都能在清晰的层级中获取所需。</p>
+            <div class="intro-stats">
+                <div class="stat-item">
+                    <div class="num">3</div>
+                    <div class="label">核心场景</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">7</div>
+                    <div class="label">常见条目</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">1</div>
+                    <div class="label">统一入口</div>
+                </div>
+            </div>
+        </div>
+        <div style="background: #f1f5f9; border-radius: 1.5rem; padding: 1.8rem; border:1px solid #e2e8f0;">
+            <div style="display:flex; flex-wrap:wrap; gap:0.8rem 1.5rem; justify-content:center;">
+                <span style="background:#0b6e4f; color:white; padding:0.25rem 0.8rem; border-radius:999px; font-size:0.8rem;">主题内容</span>
+                <span style="background:#e2e8f0; color:#1e293b; padding:0.25rem 0.8rem; border-radius:999px; font-size:0.8rem;">轻量导航</span>
+                <span style="background:#e2e8f0; color:#1e293b; padding:0.25rem 0.8rem; border-radius:999px; font-size:0.8rem;">FAQ 摘要</span>
+                <span style="background:#e2e8f0; color:#1e293b; padding:0.25rem 0.8rem; border-radius:999px; font-size:0.8rem;">场景卡片</span>
+            </div>
+            <p style="margin-top:1.2rem; color:#334155; font-size:0.95rem; text-align:center;">结构清晰，信息密度适中，便于快速浏览与索引。</p>
+        </div>
+    </div>
+</section>
+
+<!-- 三个场景模块 -->
+<section class="scenes" id="scenes">
+    <div class="container">
+        <h2>三个常用场景</h2>
+        <p class="scenes-sub">根据浏览习惯与内容类型划分，每个场景对应一组独立模块</p>
+        <div class="scene-grid">
+            <div class="scene-card">
+                <div class="scene-icon">📋</div>
+                <h3>资讯概览</h3>
+                <p>聚合主题相关的动态、公告与更新摘要，以时间轴和分类标签呈现。用户可快速了解最新话题，无需跳转多个页面。</p>
+                <div class="scene-tag">信息流 · 精简阅读</div>
+            </div>
+            <div class="scene-card">
+                <div class="scene-icon">🔗</div>
+                <h3>资源索引</h3>
+                <p>集中管理常用链接、工具与参考材料，按类型分组展示。提供简洁的描述与直接访问路径，减少查找耗时。</p>
+                <div class="scene-tag">链接 · 工具 · 文档</div>
+            </div>
+            <div class="scene-card">
+                <div class="scene-icon">💬</div>
+                <h3>社区交互</h3>
+                <p>指向讨论区、反馈渠道与协作空间，便于用户参与交流。强调环境规范与互动礼仪，营造有序的交流氛围。</p>
+                <div class="scene-tag">讨论 · 反馈 · 协作</div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:2.5rem;">
+            <a href="https://cn-home-1hao.com" style="background:white; color:#0b6e4f; border:1px solid #0b6e4f; padding:0.5rem 2rem; border-radius:999px; text-decoration:none; font-weight:500;">壹号娱乐</a>
+        </div>
+    </div>
+</section>
+
+<!-- 常见说明 FAQ 摘要 -->
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>常见说明 · 摘要</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <strong>内容更新频率？</strong>
+                <p>资讯概览模块随主题动态保持同步，索引与说明部分定期复核，确保链接有效、描述准确。</p>
+            </div>
+            <div class="faq-item">
+                <strong>如何快速定位场景？</strong>
+                <p>顶部导航固定于页面顶端，点击对应场景名称即可跳转；也可直接使用页面内锚点链接。</p>
+            </div>
+            <div class="faq-item">
+                <strong>移动端浏览体验如何？</strong>
+                <p>页面采用响应式设计，在手机与平板上自动调整卡片布局与字体大小，保留完整功能。</p>
+            </div>
+            <div class="faq-item">
+                <strong>是否支持外部链接？</strong>
+                <p>资源索引与社区交互场景中包含指向外部工具的链接，均经过筛选与标注，用户可自行判断。</p>
+            </div>
+            <div class="faq-item">
+                <strong>「壹号娱乐」与页面关系？</strong>
+                <p>该页面是围绕 <a href="https://cn-home-1hao.com">壹号娱乐</a> 构建的轻量导航介绍，旨在提供结构化的信息预览与访问路径。</p>
+            </div>
+            <div class="faq-item">
+                <strong>是否有更深度的文档？</strong>
+                <p>当前页面聚焦于概览与常见问题，更详细的说明可参考对应模块内的指引链接。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- footer -->
+<footer class="footer">
+    <p>基于主题内容整理 · 轻量导航式介绍页</p>
+    <p style="margin-top:0.5rem;">主入口 <a href="https://cn-home-1hao.com">壹号娱乐</a> · 结构持续优化</p>
+</footer>
+
+</body>
+</html>
