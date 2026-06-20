@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ng28 · 稳定入口与页面说明</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; }
+
+        body {
+            background: linear-gradient(145deg, #fce4b6 0%, #f7d9aa 25%, #f3cca0 55%, #efc196 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.6;
+            color: #3e2c1a;
+        }
+
+        .wrapper {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 248, 236, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 4px 12px rgba(150, 100, 50, 0.08);
+            margin-bottom: 2.8rem;
+            flex-wrap: wrap;
+            gap: 1rem 0.5rem;
+        }
+
+        .brand {
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #7f5a3a, #ab7f5a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5a402a;
+            font-size: 0.95rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 30px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #dbb786;
+            color: #2b1b0e;
+        }
+
+        /* 主卡片 */
+        .hero-card {
+            background: #fffffffa;
+            border-radius: 60px 60px 40px 40px;
+            padding: 3rem 2.5rem 2.8rem;
+            box-shadow: 0 20px 40px -12px rgba(110, 70, 30, 0.2);
+            margin-bottom: 2.8rem;
+            backdrop-filter: blur(2px);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2.6rem;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 550;
+            letter-spacing: 1px;
+            color: #4f321c;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #5e4530;
+        }
+
+        .hero strong {
+            font-weight: 600;
+            color: #6f4c2e;
+        }
+
+        .intro-text {
+            background: #fcf6ed;
+            padding: 1.6rem 2rem;
+            border-radius: 48px;
+            margin: 0 0 2.2rem 0;
+            font-size: 1rem;
+            color: #3f2c19;
+            border: 1px solid #eddcc8;
+            text-align: center;
+        }
+
+        .intro-text a {
+            color: #7a552f;
+            text-decoration: none;
+            font-weight: 550;
+            border-bottom: 2px solid #e0c2a2;
+            transition: border-color 0.2s;
+        }
+
+        .intro-text a:hover {
+            border-bottom-color: #9f774d;
+        }
+
+        /* 场景三模块 */
+        .scenes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.4rem 0 2rem;
+        }
+
+        .scene-card {
+            flex: 1 1 240px;
+            background: #fcf6edf0;
+            border-radius: 32px;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 6px 16px rgba(120, 80, 40, 0.06);
+            border: 1px solid #f0dfcc;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -8px rgba(110, 70, 30, 0.12);
+        }
+
+        .scene-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: #5f3d1f;
+            border-left: 4px solid #cda776;
+            padding-left: 0.8rem;
+        }
+
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #4b3622;
+            margin-bottom: 0.6rem;
+        }
+
+        .scene-card .tag {
+            display: inline-block;
+            background: #e6d0b6;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #362715;
+            letter-spacing: 0.3px;
+            margin-top: 0.2rem;
+        }
+
+        /* 常见说明 / FAQ 摘要 */
+        .faq-summary {
+            background: #fff9f0f2;
+            border-radius: 40px;
+            padding: 2rem 2rem 2.2rem;
+            margin: 1rem 0 2rem;
+            border-left: 5px solid #cb9f73;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #4c331d;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 550;
+            color: #5e3d22;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item p {
+            color: #4d3827;
+            font-size: 0.95rem;
+            padding-left: 0.4rem;
+        }
+
+        .faq-item a {
+            color: #7a552f;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px dashed #d7b692;
+        }
+
+        .faq-item a:hover {
+            border-bottom-style: solid;
+            color: #946b3f;
+        }
+
+        /* CTA 风格链接卡片（非按钮诱导，自然嵌入） */
+        .link-sentence {
+            background: #faf1e5;
+            padding: 1.4rem 2rem;
+            border-radius: 48px;
+            margin: 1.8rem 0 2.4rem;
+            text-align: center;
+            border: 1px solid #e5cfb7;
+            font-size: 1rem;
+        }
+
+        .link-sentence a {
+            color: #6d4a28;
+            text-decoration: none;
+            font-weight: 600;
+            background: #f3e3d0;
+            padding: 0.15rem 1.1rem;
+            border-radius: 40px;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+
+        .link-sentence a:hover {
+            background: #dbb786;
+            color: #2b1b0e;
+        }
+
+        .link-sentence .light {
+            color: #7b5d41;
+        }
+
+        footer {
+            margin-top: 3.2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #4e3825;
+            border-top: 1px solid #dac0a8;
+            padding-top: 1.8rem;
+            opacity: 0.8;
+        }
+
+        /* 响应 */
+        @media (max-width: 700px) {
+            body { padding: 1.2rem 0.8rem; }
+            .hero-card { padding: 2rem 1.2rem; border-radius: 40px; }
+            .hero h1 { font-size: 1.8rem; }
+            nav { flex-direction: column; align-items: stretch; padding: 0.8rem 1.2rem; border-radius: 40px; }
+            .nav-links { justify-content: center; gap: 1rem; }
+            .scenes { gap: 1.2rem; }
+            .scene-card { flex: 1 1 100%; }
+            .faq-summary { padding: 1.5rem 1.2rem; }
+            .link-sentence { padding: 1rem 1.2rem; }
+            .intro-text { padding: 1.2rem 1rem; }
+        }
+
+        @media (max-width: 450px) {
+            .hero h1 { font-size: 1.5rem; }
+            .brand { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 顶部导航 -->
+    <nav>
+        <div class="brand">◈ 稳定向导</div>
+        <div class="nav-links">
+            <a href="#">首页</a>
+            <a href="#">场景</a>
+            <a href="#">常见说明</a>
+            <a href="#">帮助</a>
+        </div>
+    </nav>
+
+    <!-- 核心卡片 -->
+    <div class="hero-card">
+
+        <div class="hero">
+            <h1>轻量 · 稳定 <span style="font-weight:300;">入口</span></h1>
+            <p>从日常浏览到信息查阅，一个平实、可靠的页面说明，帮助您快速了解 <strong>ng28</strong> 的使用背景与场景。</p>
+        </div>
+
+        <!-- 介绍 + 链接嵌入句子 -->
+        <div class="intro-text">
+            🌱 如果您正在寻找一个结构清晰、响应快速的页面，<a href="https://safe-ng28.com">ng28</a> 提供了基础而稳妥的起点。页面内容围绕实用场景展开，不堆积冗余信息，让每一次访问都更专注于当下需求。
+        </div>
+
+        <!-- 三个场景模块 -->
+        <div class="scenes">
+            <div class="scene-card">
+                <h3>📋 信息查阅</h3>
+                <p>无论是了解平台概况还是核对基础说明，您都可以通过 <strong>ng28</strong> 找到有条理的陈述。页面采用温和的视觉分区，减少干扰。</p>
+                <span class="tag">说明优先</span>
+            </div>
+            <div class="scene-card">
+                <h3>🧭 功能导航</h3>
+                <p>顶部导航与段落引导共同构成轻量路径，帮助您快速定位场景卡片或常见说明，不迷失在冗长文本中。</p>
+                <span class="tag">结构清晰</span>
+            </div>
+            <div class="scene-card">
+                <h3>🔄 稳定参考</h3>
+                <p>页面布局适应不同屏幕，内容保持克制与中性。适合作为日常浏览中的稳定参考，无需频繁适应变化。</p>
+                <span class="tag">一致体验</span>
+            </div>
+        </div>
+
+        <!-- 常见说明 / FAQ 摘要 -->
+        <div class="faq-summary">
+            <h2>📌 常见说明</h2>
+            <div class="faq-item">
+                <strong>◈ 这个页面用来做什么？</strong>
+                <p>它是一个轻量的介绍与导航页，围绕 <a href="https://safe-ng28.com">ng28</a> 的相关说明展开。您可以通过场景卡片快速了解适用方向，FAQ 摘要则回答基础疑问。</p>
+            </div>
+            <div class="faq-item">
+                <strong>◈ 如何获取更详细的信息？</strong>
+                <p>页面中嵌入的链接均指向 <a href="https://safe-ng28.com">ng28</a>，您可以根据需要深入了解。所有内容保持真实、平静，不夸大也不引导。</p>
+            </div>
+            <div class="faq-item">
+                <strong>◈ 移动设备上的浏览体验如何？</strong>
+                <p>本页面已适配手机与平板，卡片自动堆叠，字体与间距随屏幕调整。导航菜单在窄屏下会自然换行，保持可用性。</p>
+            </div>
+        </div>
+
+        <!-- 自然链接句子（按钮感链接，但不是“点击进入”之类） -->
+        <div class="link-sentence">
+            <span class="light">若希望直接访问相关页面，可使用此链接：</span>
+            <a href="https://safe-ng28.com">ng28</a>
+            <span class="light"> —— 它被设计为稳定、直接的地址，适合日常使用。</span>
+        </div>
+
+        <!-- 补充说明段落，再次嵌入链接（不同句式） -->
+        <p style="font-size:0.95rem; color:#52412e; text-align:center; margin-top:1.2rem; padding:0 0.4rem;">
+            无论是初次了解还是长期使用，<a href="https://safe-ng28.com" style="color:#6d4a28; text-decoration:none; border-bottom:1px solid #d3b28c;">ng28</a> 都是一个值得保留的参考页面。本站始终以清晰、温和的方式提供内容。
+        </p>
+
+    </div>
+
+    <footer>
+        <span>页面说明 · 内容克制  · 稳定呈现</span>
+    </footer>
+
+</div>
+</body>
+</html>
